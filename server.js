@@ -1,11 +1,12 @@
 const http = require(`http`);
+const fs = require(`fs`);
 
 const server = http.createServer((req, res) => {
   if (req.method === `GET` && req.url === `/`) {
-    const responseBody = `html page`;
+    const responseBody = fs.readFileSync(`index.html`, `utf-8`)
 
     res.statusCode = 200;
-    res.setHeader(`Content-Type`, `text/plain`);
+    res.setHeader(`Content-Type`, `text/html`);
     return res.end(responseBody);
   }
 });
